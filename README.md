@@ -4,20 +4,14 @@ YACM is a lightweight, but effective, CSS minifier.  It is slightly different fr
 
 The code is unit-tested and can be installed using Composer.
 
-The code is based on [a Gist of mine](https://gist.github.com/danbettles/5781842), which was, itself, based on a script I wrote many years ago.
+This code is based on [a Gist of mine](https://gist.github.com/danbettles/5781842).
 
-## Installation
-
-Install using [Composer](https://getcomposer.org/).
-
-```sh
-composer require danbettles/yacm:dev-master
-```
-
-## Usage
+## Basic Usage
 
 ```php
 use Danbettles\Yacm\Minifier as CssMinifier;
+
+//@todo Load the library.
 
 $minifiedCss = CssMinifier::minifyNow('body { font-size: 1em; }');
 
@@ -25,4 +19,30 @@ $minifiedCss = CssMinifier::minifyNow('body { font-size: 1em; }');
 
 $cssMinifier = new CssMinifier();
 $minifiedCss = $cssMinifier->minify('body { font-size: 1em; }');
+```
+
+## Use with BundleFu
+
+You can minify the CSS bundled by [BundleFu](https://github.com/dotsunited/BundleFu) by calling YACM in a `CallbackFilter` filter.
+
+```php
+//@todo Create bundle as per Dots United's instructions.
+
+$minifyCssFilter = new \DotsUnited\BundleFu\Filter\CallbackFilter(function($content) {
+    return \Danbettles\Yacm\Minifier::minifyNow($content);
+});
+
+$bundle->setCssFilter($minifyCssFilter);
+
+//@todo Continue using bundle as per Dots United's instructions.
+```
+
+If you need to add multiple CSS filters to your bundle then [follow Dots United's instructions on creating and using a filter chain](https://github.com/dotsunited/BundleFu#filters).
+
+## Installation
+
+Install using [Composer](https://getcomposer.org/).
+
+```sh
+composer require danbettles/yacm:dev-master
 ```
