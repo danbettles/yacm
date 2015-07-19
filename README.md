@@ -6,6 +6,14 @@ The code is unit-tested and can be installed using Composer.
 
 The code is based on [a Gist of mine](https://gist.github.com/danbettles/5781842), which was, itself, based on a script I wrote many years ago.
 
+## Installation
+
+Install using [Composer](https://getcomposer.org/).
+
+```sh
+composer require danbettles/yacm:dev-master
+```
+
 ## Usage
 
 ```php
